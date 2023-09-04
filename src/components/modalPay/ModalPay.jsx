@@ -7,9 +7,10 @@ import { Paper } from "@mui/material";
 import PayMethod from "./payMethod/payMethod";
 import PersonalData from "./personalData/personalData";
 import CreditData from "./creditData/creditData";
+import Load from "./loader/load";
 
 const ModalPay = ({ open, onClose }) => {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(0);
 
   const Component = () => {
     switch (step) {
@@ -19,6 +20,8 @@ const ModalPay = ({ open, onClose }) => {
         return <PersonalData setStep={setStep} />;
       case 2:
         return <CreditData setStep={setStep} />;
+      case 3:
+        return <Load onClose={onClose}/>;
       default:
         return <PayMethod setStep={setStep} />;
     }
@@ -27,7 +30,9 @@ const ModalPay = ({ open, onClose }) => {
   const PaperComponent = () => {
     return (
       <Paper style={PaperStyle}>
-        <ModalPayWrapper data-testid='ModalPay-Wrapper'>{Component()}</ModalPayWrapper>
+        <ModalPayWrapper data-testid="ModalPay-Wrapper">
+          {Component()}
+        </ModalPayWrapper>
       </Paper>
     );
   };

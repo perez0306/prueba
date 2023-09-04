@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Checkbox from "@mui/material/Checkbox";
+// import { useDispatch } from "react-redux";
 // Utils
 import PayIcon from "../../../static/img/product/pay-2.png";
 import {
@@ -18,15 +19,20 @@ import {
   typeOptions,
   yearOptions,
 } from "./creditData.utils";
+// import { updateDataTour } from "../../../redux/dataForm/dataForm.actions";
 
 const CreditData = ({ setStep }) => {
+  // const dispatch = useDispatch();
   const formProvider = useForm({
     mode: "onChange",
     defaultValues: {},
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = () => {};
+  const onSubmit = (values) => {
+    setStep(3);
+    // dispatch(updateDataTour(values));
+  };
 
   return (
     <CreditDataWrapper data-testid="CreditData-Wrapper">

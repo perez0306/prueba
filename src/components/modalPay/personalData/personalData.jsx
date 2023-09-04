@@ -5,24 +5,30 @@ import { IconButton } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Controller, FormProvider } from "react-hook-form";
 import Button from "@mui/material/Button";
+import { useDispatch, useSelector } from "react-redux";
 // Style
 import PersonalDataWrapper from "./personalData.style";
 // Utils
 import { schema } from "./personalData.utils";
+import { updateDataTour } from "../../../redux/dataForm/dataForm.actions";
 
 const PersonalData = ({ setStep }) => {
+  const data = useSelector((state) => state.dataReducer.data);
+  const dispatch = useDispatch();
+
   const formProvider = useForm({
     mode: "onChange",
-    defaultValues: {},
+    defaultValues: { ...data },
     resolver: yupResolver(schema),
   });
 
   const onSubmit = (values) => {
-    setStep(2)
+    setStep(2);
+    dispatch(updateDataTour(values));
   };
 
   return (
-    <PersonalDataWrapper data-testid='PersonalData-Wrapper'>
+    <PersonalDataWrapper data-testid="PersonalData-Wrapper">
       <div className="container-personal">
         <IconButton
           onClick={() => {
@@ -41,7 +47,7 @@ const PersonalData = ({ setStep }) => {
               name="email"
               control={formProvider.control}
               defaultValue=""
-              render={({ field }) => <input data-testid='email' {...field} />}
+              render={({ field }) => <input data-testid="email" {...field} />}
             />
             <span>{formProvider.formState.errors.email?.message}</span>
           </div>
@@ -51,7 +57,7 @@ const PersonalData = ({ setStep }) => {
               name="name"
               control={formProvider.control}
               defaultValue=""
-              render={({ field }) => <input data-testid='name' {...field} />}
+              render={({ field }) => <input data-testid="name" {...field} />}
             />
             <span>{formProvider.formState.errors.name?.message}</span>
           </div>
@@ -61,11 +67,15 @@ const PersonalData = ({ setStep }) => {
               name="phone"
               control={formProvider.control}
               defaultValue=""
-              render={({ field }) => <input data-testid='phone' type="number" {...field} />}
+              render={({ field }) => (
+                <input data-testid="phone" type="number" {...field} />
+              )}
             />
             <span>{formProvider.formState.errors.phone?.message}</span>
           </div>
-          <Button data-testid='submit-button' type="submit">Continuar con tu pago seguro</Button>
+          <Button data-testid="submit-button" type="submit">
+            Continuar con tu pago seguro
+          </Button>
         </form>
       </FormProvider>
     </PersonalDataWrapper>
