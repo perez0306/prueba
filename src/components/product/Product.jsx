@@ -13,7 +13,7 @@ const Product = () => {
   const openStorage = localStorage.getItem("openModal");
   const opoenDefault = JSON.parse(openStorage);
   const [open, setOpen] = useState(opoenDefault ?? false);
-  const count = useSelector((state) => state.count);
+  const count = useSelector((state) => state.countReducer.count);
 
   const onClose = () => {
     setOpen(false);
@@ -22,7 +22,8 @@ const Product = () => {
   useEffect(() => {
     localStorage.setItem("openModal", open);
   }, [open]);
-
+  
+  console.log({count})
   return (
     <ProductWrapper data-testid="Product-Wrapper">
       <h1>Producto X</h1>
