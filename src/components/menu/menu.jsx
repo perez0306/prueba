@@ -26,14 +26,14 @@ const MenuComponent = () => {
   ];
 
   return (
-    <MenuWrapper>
+    <MenuWrapper data-testid='Menu-Wrapper'>
       <div className="imagen">
         <img src={logoGrande} alt="icon-logo" className="imaLogo" />
       </div>
       <div className="contacto">
         {isMobile ? (
           <>
-            <IconButton onClick={() => setOpen(!open)}>
+            <IconButton data-testid="menu-icon-button" onClick={() => setOpen(!open)}>
               <MenuIcon />
             </IconButton>
             <Menu

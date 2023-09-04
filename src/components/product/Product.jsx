@@ -18,7 +18,7 @@ const Product = () => {
   };
 
   return (
-    <ProductWrapper>
+    <ProductWrapper data-testid='Product-Wrapper'>
       <h1>Producto X</h1>
       <div className="container-icon">
         <div className="icon">

@@ -17,13 +17,14 @@ const PayMethod = ({ setStep }) => {
   };
 
   return (
-    <PayMethodWrapper>
+    <PayMethodWrapper data-testid='PayMethod-Wrapper'>
       <h4>Escoge un método de pago</h4>
       <ul className="list-pay">
         {method?.map((item, index) => (
           <li
             className={`card ${isSelected === index ? "select" : ""}`}
             key={`${item.text}-${index}`}
+            data-testid='card'
             onClick={() => {
               handleChangeCard(index);
             }}

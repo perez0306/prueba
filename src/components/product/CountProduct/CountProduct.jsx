@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 // Style
 import { useStyles } from "./CountProduct.style";
 // Libs
-import { Button, TextField } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { updateCountTour } from "../../../redux/count/count.actions";
 
@@ -17,20 +17,6 @@ const CountProduct = () => {
 
   const changeCount = (newValue) => {
     dispatch(updateCountTour(newValue));
-  };
-
-  const handleIncrement = () => {
-    const newCount = quantity + 1;
-    setQuantity(newCount);
-    changeCount(newCount);
-  };
-
-  const handleDecrement = () => {
-    if (quantity > 1) {
-      const newCount = quantity - 1;
-      setQuantity(newCount);
-      changeCount(newCount);
-    }
   };
 
   const handleInputChange = (event) => {
@@ -48,30 +34,15 @@ const CountProduct = () => {
   }, [quantity]);
 
   return (
-    <div className={classes.root}>
-      <Button
-        variant="outlined"
-        color="primary"
-        className={classes.button}
-        onClick={handleDecrement}
-      >
-        -
-      </Button>
+    <div data-testid="CountProduct-Wrapper" className={classes.root}>
       <TextField
+        dataTestId="quantity-input"
         type="number"
         value={quantity}
         onChange={handleInputChange}
-        inputProps={{ min: 1 }}
+        inputProps={{ min: 1, "data-testid": "input" }}
         className={classes.quantityInput}
       />
-      <Button
-        variant="outlined"
-        color="primary"
-        className={classes.button}
-        onClick={handleIncrement}
-      >
-        +
-      </Button>
     </div>
   );
 };
