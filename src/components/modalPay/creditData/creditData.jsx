@@ -33,7 +33,7 @@ const CreditData = ({ setStep }) => {
       <div className="container-personal">
         <IconButton
           onClick={() => {
-            setStep(0);
+            setStep(1);
           }}
         >
           <ArrowBackIcon />
@@ -59,7 +59,7 @@ const CreditData = ({ setStep }) => {
               defaultValue=""
               render={({ field }) => <input {...field} />}
             />
-            <span>{formProvider.formState.errors.email?.message}</span>
+            <span>{formProvider.formState.errors.number?.message}</span>
           </div>
           <div className="container-expiration">
             <div className="field">
@@ -99,7 +99,10 @@ const CreditData = ({ setStep }) => {
                     </Select>
                   )}
                 />
-                <span>{formProvider.formState.errors.name?.message}</span>
+                <span>
+                  {formProvider.formState.errors.month?.message ||
+                    formProvider.formState.errors.year?.message}
+                </span>
               </div>
             </div>
             <div className="field">
@@ -108,11 +111,9 @@ const CreditData = ({ setStep }) => {
                 name="cvc"
                 control={formProvider.control}
                 defaultValue=""
-                render={({ field }) => (
-                  <input type="number" placeholder="Año" {...field} />
-                )}
+                render={({ field }) => <input type="number" {...field} />}
               />
-              <span>{formProvider.formState.errors.phone?.message}</span>
+              <span>{formProvider.formState.errors.cvc?.message}</span>
             </div>
           </div>
           <div className="field">
@@ -121,11 +122,9 @@ const CreditData = ({ setStep }) => {
               name="name"
               control={formProvider.control}
               defaultValue=""
-              render={({ field }) => (
-                <input type="number" placeholder="Año" {...field} />
-              )}
+              render={({ field }) => <input {...field} />}
             />
-            <span>{formProvider.formState.errors.phone?.message}</span>
+            <span>{formProvider.formState.errors.name?.message}</span>
           </div>
           <div className="field">
             <label>Identificacion del tarjetahabiente</label>
@@ -160,7 +159,10 @@ const CreditData = ({ setStep }) => {
                 )}
               />
             </div>
-            <span>{formProvider.formState.errors.phone?.message}</span>
+            <span>
+              {formProvider.formState.errors.type?.message ||
+                formProvider.formState.errors.identification?.message}
+            </span>
           </div>
           <div className="field">
             <label>Número de cuotas</label>
@@ -170,7 +172,7 @@ const CreditData = ({ setStep }) => {
               defaultValue=""
               render={({ field }) => <input type="number" {...field} />}
             />
-            <span>{formProvider.formState.errors.phone?.message}</span>
+            <span>{formProvider.formState.errors.quota?.message}</span>
           </div>
           <div className="field">
             <label>Número de cuotas</label>
@@ -188,7 +190,7 @@ const CreditData = ({ setStep }) => {
                 </div>
               )}
             />
-            <span>{formProvider.formState.errors.phone?.message}</span>
+            <span>{formProvider.formState.errors.check?.message}</span>
           </div>
           <Button type="submit">Continuar con tu pago seguro</Button>
         </form>

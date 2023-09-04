@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // Style
 import ProductWrapper from "./Product.style";
 // Utils
@@ -10,15 +10,21 @@ import Button from "@mui/material/Button";
 import ModalPay from "../modalPay/ModalPay";
 
 const Product = () => {
-  const [open, setOpen] = useState(false);
+  const openStorage = localStorage.getItem("openModal");
+  const opoenDefault = JSON.parse(openStorage);
+  const [open, setOpen] = useState(opoenDefault ?? false);
   const count = useSelector((state) => state.count);
 
   const onClose = () => {
     setOpen(false);
   };
 
+  useEffect(() => {
+    localStorage.setItem("openModal", open);
+  }, [open]);
+
   return (
-    <ProductWrapper data-testid='Product-Wrapper'>
+    <ProductWrapper data-testid="Product-Wrapper">
       <h1>Producto X</h1>
       <div className="container-icon">
         <div className="icon">
