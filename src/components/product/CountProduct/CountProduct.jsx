@@ -9,7 +9,7 @@ import { updateCountTour } from "../../../redux/count/count.actions";
 const CountProduct = () => {
   const dispatch = useDispatch();
   const localStorageCount = localStorage.getItem("count");
-  const countDefault = parseInt(localStorageCount) ?? 0;
+  const countDefault = parseInt(localStorageCount ?? 1);
   dispatch(updateCountTour(countDefault));
 
   const classes = useStyles();
