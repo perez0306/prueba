@@ -1,20 +1,37 @@
 import * as yup from "yup";
 
-const regex = /^(?:[0-9]{4}-){3}[0-9]{4}$|^[0-9]{16}$/;
+const regex = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/;
 
 export const schema = yup.object().shape({
-  name: yup.string().required("El nombre es requerido"),
-  email: yup
-    .string()
-    .email("El email no es válido")
-    .required("El email es requerido"),
-  phone: yup
-    .number()
-    .typeError()
-    .min(1000000000, "Mínimo 10 caracteres")
-    .max(9999999999, "Maximo 10 caracteres")
-    .required("El telefóno es requerido"),
-});
+    number: yup
+      .string()
+      .required("El número de la tarjeta es requerido")
+      .matches(regex, "Número de tarjeta de crédito inválido"),
+    month: yup
+      .string()
+      .required("El mes de expiración es requerido"),
+    year: yup
+      .string()
+      .required("El año de expiración es requerido")
+      .matches(/^\d{4}$/, "El año de expiración debe tener 4 dígitos"),
+    cvc: yup
+      .string()
+      .required("El código CVC es requerido")
+      .matches(/^\d{3,4}$/, "El código CVC debe tener 3 o 4 dígitos"),
+    name: yup.string().required("El nombre en la tarjeta es requerido"),
+    type: yup.string().required("El tipo de documento es requerido"),
+    identification: yup
+      .string()
+      .required("La identificación del tarjetahabiente es requerida")
+      .matches(/^\d{8,10}$/, "La identificación debe tener entre 8 y 10 dígitos"),
+    quota: yup
+      .number()
+      .typeError('Ingrese solo numeros')
+      .required("El número de cuotas es requerido")
+      .integer("El número de cuotas debe ser un número entero")
+      .min(1, "El número de cuotas debe ser al menos 1"),
+    check: yup.boolean().oneOf([true], "Debes aceptar los términos y condiciones").typeError('Campo requerido'),
+  });
 
 export const monthOptions = [
   { label: "1", value: "1" },

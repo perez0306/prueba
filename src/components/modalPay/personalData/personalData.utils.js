@@ -8,7 +8,7 @@ export const schema = yup.object().shape({
     .required("El email es requerido"),
   phone: yup
     .number()
-    .typeError()
+    .typeError('Ingrese solo numeros')
     .min(1000000000, "Mínimo 10 caracteres")
     .max(9999999999, "Maximo 10 caracteres")
     .required("El telefóno es requerido"),

@@ -36,7 +36,6 @@ const CountProduct = () => {
   return (
     <div data-testid="CountProduct-Wrapper" className={classes.root}>
       <TextField
-        dataTestId="quantity-input"
         type="number"
         value={quantity}
         onChange={handleInputChange}

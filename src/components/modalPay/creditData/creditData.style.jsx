@@ -2,8 +2,6 @@ import styled from "styled-components";
 import { rojo } from "../../../styles/contantStyles";
 
 const CreditDataWrapper = styled.div`
-  overflow-y: scroll;
-
   .icon-pay {
     width: 60%;
   }
