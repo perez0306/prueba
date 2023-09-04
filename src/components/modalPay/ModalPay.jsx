@@ -9,7 +9,7 @@ import PersonalData from "./personalData/personalData";
 import CreditData from "./creditData/creditData";
 
 const ModalPay = ({ open, onClose }) => {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(2);
 
   const Component = () => {
     switch (step) {
@@ -27,7 +27,7 @@ const ModalPay = ({ open, onClose }) => {
   const PaperComponent = () => {
     return (
       <Paper style={PaperStyle}>
-        <ModalPayWrapper>{Component()}</ModalPayWrapper>
+        <ModalPayWrapper data-testid='ModalPay-Wrapper'>{Component()}</ModalPayWrapper>
       </Paper>
     );
   };
@@ -35,7 +35,8 @@ const ModalPay = ({ open, onClose }) => {
   return (
     <Dialog
       open={open}
-      maxWidth="lg"
+      style={{ root: { overflow: "scroll" } }}
+      maxWidth="md"
       onClose={onClose}
       PaperComponent={PaperComponent}
     />

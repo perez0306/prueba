@@ -6,6 +6,7 @@ const ProductWrapper = styled.section`
   display: grid;
   grid-template-columns: 1fr;
   padding: 24px;
+  gap: 40px;
 
   .icon {
     display: grid;
@@ -31,6 +32,10 @@ const ProductWrapper = styled.section`
 
     .container-icon {
       grid-column: 1;
+    }
+
+    .container-button {
+      grid-column: 1/3;
     }
   }
 `;

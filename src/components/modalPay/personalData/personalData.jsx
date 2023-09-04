@@ -22,7 +22,7 @@ const PersonalData = ({ setStep }) => {
   };
 
   return (
-    <PersonalDataWrapper>
+    <PersonalDataWrapper data-testid='PersonalData-Wrapper'>
       <div className="container-personal">
         <IconButton
           onClick={() => {
@@ -41,7 +41,7 @@ const PersonalData = ({ setStep }) => {
               name="email"
               control={formProvider.control}
               defaultValue=""
-              render={({ field }) => <input {...field} />}
+              render={({ field }) => <input data-testid='email' {...field} />}
             />
             <span>{formProvider.formState.errors.email?.message}</span>
           </div>
@@ -51,7 +51,7 @@ const PersonalData = ({ setStep }) => {
               name="name"
               control={formProvider.control}
               defaultValue=""
-              render={({ field }) => <input {...field} />}
+              render={({ field }) => <input data-testid='name' {...field} />}
             />
             <span>{formProvider.formState.errors.name?.message}</span>
           </div>
@@ -61,11 +61,11 @@ const PersonalData = ({ setStep }) => {
               name="phone"
               control={formProvider.control}
               defaultValue=""
-              render={({ field }) => <input type="number" {...field} />}
+              render={({ field }) => <input data-testid='phone' type="number" {...field} />}
             />
             <span>{formProvider.formState.errors.phone?.message}</span>
           </div>
-          <Button type="submit">Continuar con tu pago seguro</Button>
+          <Button data-testid='submit-button' type="submit">Continuar con tu pago seguro</Button>
         </form>
       </FormProvider>
     </PersonalDataWrapper>
